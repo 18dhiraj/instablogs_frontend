@@ -1,8 +1,6 @@
 import React from "react";
-import Image from "next/image";
 import app from "@/firebase";
 import { getFirestore, collection, getDocs, query, where, limit, orderBy } from "firebase/firestore";
-import Category from "@/app/category/page";
 import SideListCategoryItem from "./SideListCateogryItem";
 import SideListPostItem from "./SideListPostItem";
 
