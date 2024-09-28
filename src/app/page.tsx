@@ -1,14 +1,11 @@
 import React from "react";
-import HomePageCard from "@/components/HomepageCard";
 import { getDocs, collection, getFirestore, limit, query } from "firebase/firestore";
-import app from "@/firebase";
 import CategoryListing from "@/components/categoryLisitng";
 import RightSection from "@/components/RightSection";
 import PostsListing from "@/components/PostsListing";
+import { db } from "@/firebase";
 
 const getData = async () => {
-  app()
-  const db = getFirestore()
   const postsQuery = query(collection(db, "posts"), limit(5));
   const querySnapshot = await getDocs(postsQuery);
   const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];

@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 const HomePageCard = (data: any) => {
 
     const router = useRouter();
-
     const { image, title, summary, category, seo } = data.e
 
     const navigate = () => {
@@ -15,7 +14,7 @@ const HomePageCard = (data: any) => {
     }
 
     return (
-        <div className={`py-5 `}>
+        <div className={`py-5`} key={data.i}>
             <h1 className="fs-[20px] text-lg md:text-2xl font-semibold mb-5 cursor-pointer" onClick={navigate} >{title}</h1>
             <div className="max-h-[400px] cursor-pointer" onClick={navigate} >
                 <Image

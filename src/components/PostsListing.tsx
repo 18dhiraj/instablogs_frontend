@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect, useState } from "react";
-import { getDocs, collection, getFirestore, limit, query, startAfter, getDoc, orderBy, doc } from "firebase/firestore";
+import { getDocs, collection, limit, query, startAfter, getDoc, orderBy, doc } from "firebase/firestore";
 import HomePageCard from "./HomepageCard";
-import app from "@/firebase";
+import { db } from "@/firebase";
 
 const PostsListing = ({ initialPosts, lastVisibleId, }: any) => {
 
@@ -12,14 +12,10 @@ const PostsListing = ({ initialPosts, lastVisibleId, }: any) => {
 
     const pageSize = 5;
 
-
     // Function to fetch the next page
     const loadMorePosts = async () => {
         if (!lastVisible) return
-        app();
-        const db = getFirestore();
         setLoading(true);
-
         // Fetch the last document as a cursor
         const lastDocSnap = await getDoc(doc(db, 'posts', lastVisible));
 

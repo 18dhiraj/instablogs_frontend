@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 
 const SideListPostItem = (props: any) => {
 
-    let { e } = props
+    let { e, i } = props
     const router = useRouter()
     return (
-        <div onClick={() => router.push(`/category/${e.category}/${e.seo}`)} className="cursor-pointer m-1 mb-0">
+        <div key={i} onClick={() => router.push(`/category/${e.category}/${e.seo}`)} className="cursor-pointer m-1 mb-0">
             <Image
                 src={e.image}
                 alt="category"
