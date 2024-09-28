@@ -1,10 +1,9 @@
 import { getFirestore, getDocs, collection, where, query } from "firebase/firestore";
 import HomePageCard from "@/components/HomepageCard";
-import app from "@/firebase";
+import { db } from "@/firebase";
 
 const getdata = async (cate: string) => {
-    app()
-    const db = getFirestore()
+
     let q = query(collection(db, 'posts'), where('category', "==", cate))
     const querySnapshot = await getDocs(q);
     let _posts: any = []

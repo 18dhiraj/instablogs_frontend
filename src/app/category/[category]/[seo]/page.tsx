@@ -1,13 +1,11 @@
 import Image from "next/image";
 import MoreLikeThisCard from "@/components/MoreLikeThisCard";
 import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
-import app from "@/firebase";
 import RightSection from "@/components/RightSection";
+import { db } from "@/firebase";
 
 const getdata = async (seo: string) => {
 
-    app()
-    const db = getFirestore();
     const q = query(collection(db, "posts"), where("seo", "==", seo));
     const querySnapshot = await getDocs(q);
     let _posts: any = []
@@ -57,8 +55,8 @@ const Details = async (props: any) => {
             <div>
                 <h1 className="fs-[20px] text-2xl font-semibold my-10 " >More like this</h1>
                 <div className="flex overflow-x-scroll">
-                    {moreLike.map((e: any) => {
-                        return <MoreLikeThisCard e={e} />
+                    {moreLike.map((e: any, i: number) => {
+                        return <MoreLikeThisCard e={e} i={i} />
                     })}
                 </div>
             </div>

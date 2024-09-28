@@ -1,11 +1,9 @@
 import React from "react";
 import { collection, getDocs, getFirestore, orderBy, query } from "firebase/firestore";
-import app from "@/firebase";
 import Allcategories from "@/components/allcategories";
+import { db } from "@/firebase";
 
 const getCate = async () => {
-    app()
-    const db = getFirestore()
     let categoriesQuery = query(collection(db, "categories"), orderBy('name'))
     const categoriesSnapshot = await getDocs(categoriesQuery);
     let _category: any = []
@@ -49,29 +47,27 @@ const Category = async () => {
             <div className="text-xl py-4">Categories</div>
             <div >
                 {
-                    formatedCate.map((e:any, i: number) => {
+                    formatedCate.map((e: any, i: number) => {
                         return (
-                            <>
-                                <div>
-                                    {
-                                        Object.entries(e).map(([e1, v1] : any, i1: number) => {
-                                            return (
-                                                <>
-                                                    <div className="my-5 text-xl text-blue underline">{e1}</div>
-                                                    <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 " >
-                                                        {
-                                                            v1.map((val : any, ival: number) => {
-                                                                return <Allcategories e={val} i={ival} />
-                                                            })
-                                                        }
-                                                    </div>
-                                                </>
-                                            )
+                            <div key={i}>
+                                {
+                                    Object.entries(e).map(([e1, v1]: any, i1: number) => {
+                                        return (
+                                            <>
+                                                <div key={i1} className="my-5 text-xl text-blue underline">{e1}</div>
+                                                <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 " >
+                                                    {
+                                                        v1.map((val: any, ival: number) => {
+                                                            return <Allcategories e={val} i={ival} />
+                                                        })
+                                                    }
+                                                </div>
+                                            </>
+                                        )
 
-                                        })
-                                    }
-                                </div>
-                            </>
+                                    })
+                                }
+                            </div>
                         )
                     })
                 }

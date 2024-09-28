@@ -3,12 +3,12 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const SideListCategoryItem = (props : any) => {
+const SideListCategoryItem = (props: any) => {
 
-    let { e } = props
+    let { e, i } = props
     const router = useRouter()
     return (
-        <div className="cursor-pointer m-1 mb-0" onClick={() => router.push(`/category/${e.seo}`)} >
+        <div key={i} className="cursor-pointer m-1 mb-0" onClick={() => router.push(`/category/${e.seo}`)} >
             <Image
                 src={e.image}
                 alt="category"

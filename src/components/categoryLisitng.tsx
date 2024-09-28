@@ -6,10 +6,10 @@ import { useRouter } from 'next/navigation'
 const CategoryListing = (props: any) => {
 
     const router = useRouter();
-    const { e } = props;
+    const { e, i } = props;
 
     return (
-        <div className="mb-5 relative flex justify-center items-center cursor-pointer" onClick={() => router.push(`/category/${e.seo}`)}>
+        <div key={i} className="mb-5 relative flex justify-center items-center cursor-pointer" onClick={() => router.push(`/category/${e.seo}`)}>
             <Image
                 src={e.image}
                 className="object-cover max-h-[100px] h-[100px] md:max-h-[200px] md:h-[170px] w-[100%] rounded-lg hover:scale-105 ease duration-200 "
