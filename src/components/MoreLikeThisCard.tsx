@@ -3,17 +3,12 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-interface Person {
-    seo: string;
-    details: string;
-    image: string;
-    title: string;
-    category: string;
-}
 
 
-const MoreLikeThisCard = ({ e }: any) => {
 
+const MoreLikeThisCard = (props: { e: MoreLikeThis, i: number }) => {
+
+    const { e } = props
     const router = useRouter();
 
     const navigate = () => {

@@ -12,12 +12,12 @@ const getData = async () => {
 
   const categoriesQuery = query(collection(db, 'categories'), limit(3));
   const categoriesSnapshot = await getDocs(categoriesQuery);
-  let _posts: any = []
-  let _category: any = []
-  querySnapshot.forEach((doc) => {
+  let _posts: Seo[] = []
+  let _category: Category[] = []
+  querySnapshot.forEach((doc: any) => {
     _posts.push({ ...doc.data(), docID: doc.id })
   });
-  categoriesSnapshot.forEach((doc) => {
+  categoriesSnapshot.forEach((doc: any) => {
     _category.push({ ...doc.data(), docID: doc.id })
   });
 
@@ -26,20 +26,14 @@ const getData = async () => {
 
 export default async () => {
 
-  let { posts, cate, lastVisible }: any = await getData();
-
-  // setTimeout(() => {
-  //   getPaginationData(6).then((res) => {
-  //     console.log(JSON.stringify(res))
-  //   })
-  // }, 2000)
+  let { posts , cate, lastVisible } = await getData();
 
   return (
     <div className="pt-10 px-4" >
       <div className="grid grid-cols-3 gap-[10px] md:gap-[20px]">
         <div className="col-span-2">
           <div className="grid gap-4 grid-cols-2 md:grid-cols-3 mb-4" >
-            {cate.map((e: any, i: number) => <CategoryListing e={e} i={i} />)}
+            {cate.map((e: Category , i: number) => <CategoryListing e={e} i={i} />)}
           </div>
           <div>
             <PostsListing initialPosts={posts} lastVisibleId={lastVisible.id} />

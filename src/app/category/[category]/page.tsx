@@ -6,19 +6,19 @@ const getdata = async (cate: string) => {
 
     let q = query(collection(db, 'posts'), where('category', "==", cate))
     const querySnapshot = await getDocs(q);
-    let _posts: any = []
-    querySnapshot.forEach((doc) => _posts.push({ ...doc.data(), docID: doc.id }));
+    let _posts: Seo[] = []
+    querySnapshot.forEach((doc: any) => _posts.push({ ...doc.data(), docID: doc.id }));
     return { props: _posts }
 }
 
-export default async function (repo: any) {
+export default async function (repo: { params: { category: string } }) {
 
     let posts = await getdata(repo.params.category)
     return (
         <>
             <div className="pt-10 grid grid-cols-1 lg:grid-cols-2 gap-[80px] m-5" >
                 {
-                    posts.props.map((e: any, i: number) => <HomePageCard e={e} i={i} w={'80%'} />)
+                    posts.props.map((e: Seo, i: number) => <HomePageCard e={e} i={i} />)
                 }
             </div>
         </>

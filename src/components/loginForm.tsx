@@ -25,7 +25,7 @@ const LoginForm = () => {
         setFieldValues(_fieldValues)
     }
 
-    const handleLogin = (e: any) => {
+    const handleLogin = (e:React.FormEvent<HTMLFormElement>) => {
         setLoading(true)
         e.preventDefault()
         alert(JSON.stringify(fieldValues))

@@ -26,7 +26,7 @@ const RegisterForm = () => {
         setFieldValues(_fieldValues)
     }
 
-    const handleSignup = (e: any) => {
+    const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
         setLoading(true)
         e.preventDefault()
         // alert(JSON.stringify(fieldValues))
