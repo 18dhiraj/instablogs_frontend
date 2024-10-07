@@ -8,22 +8,24 @@ const Sidebar = (props: any) => {
     const { setLogged } = props
 
     const [active, setActive] = useState<string>('home')
-    const pathname = usePathname();
+    const pathname: string | null = usePathname();
     const router = useRouter();
 
     useEffect(() => {
-        let paths = pathname.split("/")
-        if (paths[paths.length - 1] == "") {
-            router.push(pathname.slice(0, pathname.length - 1))
-        } else {
-            setActive(pathname);
+        if (pathname) {
+            let paths = pathname.split("/")
+            if (paths[paths.length - 1] == "") {
+                router.push(pathname.slice(0, pathname.length - 1))
+            } else {
+                setActive(pathname);
+            }
         }
     }, [pathname])
 
     return (
         <nav className="w-fit sm:w-2/5 md:w-1/3 lg:w-[300px] border-r py-[20px] sm:py-10 px-2 sm:px-10 flex flex-col justify-between" >
             <div>
-                <div onClick={() => { router.push("/home") }} className={` ${active.includes('home') ? " bg-indigo-500 text-white shadow" : ""}  py-2 pl-3 pr-0 sm:pr-3 my-3 hover:bg-indigo-500 rounded-md border hover:text-white flex cursor-pointer`}>
+                <div onClick={() => router.push("/home")} className={` ${active.includes('home') ? " bg-indigo-500 text-white shadow" : ""}  py-2 pl-3 pr-0 sm:pr-3 my-3 hover:bg-indigo-500 rounded-md border hover:text-white flex cursor-pointer`}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 mr-0 sm:mr-3">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                     </svg>

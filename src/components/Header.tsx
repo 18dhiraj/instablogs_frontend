@@ -21,7 +21,7 @@ const Header = () => {
         setShowSearch(!showSearch)
     }
 
-    // console.log(params)
+    // (params)
     // console.log(pathName)
 
     return (

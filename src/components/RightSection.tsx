@@ -12,12 +12,12 @@ export const getData = async () => {
     let postsQuery = query(collection(db, "posts"), orderBy("dateTime"), limit(4))
     const postsSnapshot = await getDocs(postsQuery);
 
-    let _latest: any = []
-    let _category: any = []
-    postsSnapshot.forEach((doc) => {
+    let _latest: Seo[] = []
+    let _category: Category[] = []
+    postsSnapshot.forEach((doc: any) => {
         _latest.push({ ...doc.data(), docID: doc.id })
     });
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach((doc: any) => {
         _category.push({ ...doc.data(), docID: doc.id })
     });
 
@@ -34,7 +34,7 @@ const RightSection = async () => {
                 <div className=" text-sm md:text-xl font-semibold mb-2 p-1 md:p-0 whitespace-break-spaces" >Popular</div>
                 <div className="p-2 md:p-4 rounded-lg grid grid-cols-1 lg:grid-cols-2 gap-1 bg-[#fae8cf]" >
                     {
-                        latest.map((e: any, i: number) => (
+                        latest.map((e: Seo, i: number) => (
                             <SideListPostItem e={e} i={i} />
                         ))
                     }
@@ -45,7 +45,7 @@ const RightSection = async () => {
                 <div className="text-sm md:text-xl mb-2 font-semibold whitespace-break-spaces" >Top Categories</div>
                 <div className="p-2 md:p-4 rounded-lg grid grid-cols-1 lg:grid-cols-2 gap-1 bg-[#fae8cf]" >
                     {
-                        category.map((e: any, i: number) => (
+                        category.map((e: Category, i: number) => (
                             <SideListCategoryItem e={e} i={i} />
                         ))
                     }

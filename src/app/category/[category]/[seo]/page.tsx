@@ -21,11 +21,11 @@ const getdata = async (seo: string) => {
     return { posts: _posts, more: _more }
 }
 
-const Details = async (props: any) => {
+const Details = async (props: { params: { seo: string } }) => {
 
     const { params } = props;
     let detailss = await getdata(params.seo);
-    let details = detailss.posts[0];
+    let details: Product = detailss.posts[0];
     let moreLike = detailss.more;
 
     return (
@@ -55,7 +55,7 @@ const Details = async (props: any) => {
             <div>
                 <h1 className="fs-[20px] text-2xl font-semibold my-10 " >More like this</h1>
                 <div className="flex overflow-x-scroll">
-                    {moreLike.map((e: any, i: number) => {
+                    {moreLike.map((e: MoreLikeThis, i: number) => {
                         return <MoreLikeThisCard e={e} i={i} />
                     })}
                 </div>

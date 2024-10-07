@@ -4,8 +4,9 @@ import { getDocs, collection, limit, query, startAfter, getDoc, orderBy, doc } f
 import HomePageCard from "./HomepageCard";
 import { db } from "@/firebase";
 
-const PostsListing = ({ initialPosts, lastVisibleId, }: any) => {
+const PostsListing = (props: { initialPosts: Seo[], lastVisibleId: string }) => {
 
+    const { initialPosts, lastVisibleId, } = props
     const [posts, setPosts] = useState(initialPosts);
     const [lastVisible, setLastVisible] = useState(lastVisibleId);
     const [loading, setLoading] = useState(false);
@@ -52,7 +53,7 @@ const PostsListing = ({ initialPosts, lastVisibleId, }: any) => {
 
     return (
         <div>
-            {posts.map((e: any, i: number) => <HomePageCard e={e} i={i} />)}
+            {posts.map((e: Seo, i: number) => <HomePageCard e={e} i={i} />)}
         </div>
     )
 }

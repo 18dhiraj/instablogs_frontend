@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const SideListCategoryItem = (props: any) => {
+const SideListCategoryItem = (props: { e: Category, i: number }) => {
 
     let { e, i } = props
     const router = useRouter()

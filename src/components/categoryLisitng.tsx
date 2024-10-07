@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-const CategoryListing = (props: any) => {
+const CategoryListing = (props: { e: Category, i: number }) => {
 
     const router = useRouter();
     const { e, i } = props;

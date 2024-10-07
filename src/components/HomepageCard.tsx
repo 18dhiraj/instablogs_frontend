@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const HomePageCard = (data: any) => {
+const HomePageCard = (data: { e: Seo, i: number }) => {
 
     const router = useRouter();
     const { image, title, summary, category, seo } = data.e

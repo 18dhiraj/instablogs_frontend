@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const Allcategories = (props:any) => {
+const Allcategories = (props: { e: Category, i: number }) => {
 
     const { e, i } = props;
     const router = useRouter()
