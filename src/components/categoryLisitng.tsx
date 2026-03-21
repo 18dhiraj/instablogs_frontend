@@ -4,21 +4,29 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 const CategoryListing = (props: { e: Category, i: number }) => {
-
     const router = useRouter();
     const { e, i } = props;
 
     return (
-        <div key={i} className="mb-5 relative flex justify-center items-center cursor-pointer" onClick={() => router.push(`/category/${e.seo}`)}>
+        <div 
+            key={e.docID || i} 
+            className="group relative h-64 w-full cursor-pointer overflow-hidden rounded-2xl bg-surface-100 shadow-soft transition-all hover:-translate-y-1 hover:shadow-hover" 
+            onClick={() => router.push(`/category/${e.seo}`)}
+        >
             <Image
                 src={e.image}
-                className="object-cover max-h-[100px] h-[100px] md:max-h-[200px] md:h-[170px] w-[100%] rounded-lg hover:scale-105 ease duration-200 "
-                alt={e.seo}
-                width={300}
-                height={100}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                alt={e.name}
             />
-            <div className='text-[10px] md:text-[12px] absolute bottom-[-10px] bg-[orange] px-2 text-[#fff]' >
-                {e.name}
+            <div className="absolute inset-0 bg-gradient-to-t from-surface-900/90 via-surface-900/20 to-transparent"></div>
+            <div className="absolute inset-0 flex flex-col justify-end p-6">
+                <span className="mb-2 w-fit rounded-full bg-brand-500 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                    Category
+                </span>
+                <h3 className="text-xl font-black tracking-tight text-white group-hover:text-brand-300">
+                    {e.name}
+                </h3>
             </div>
         </div>
     )

@@ -11,72 +11,52 @@ const getCate = async () => {
         _category.push({ ...doc.data(), docID: doc.id })
     });
 
-    return { cate: _category }
+    // Group categories by the first letter
+    const groupedCategories = _category.reduce((acc, category) => {
+        const firstLetter = category.name.charAt(0).toUpperCase();
+        if (!acc[firstLetter]) {
+            acc[firstLetter] = [];
+        }
+        acc[firstLetter].push(category);
+        return acc;
+    }, {} as Record<string, Category[]>);
+
+    return { groupedCategories };
 }
 
 const Category = async () => {
-
-    let { cate } = await getCate()
-
-    let lastAlphabet: string = ''
-
-    let formatedCate: any = []
-
-    cate.map((e: Category) => {
-        let firstWord: string = e.name.charAt(0)
-        if (lastAlphabet == '') {
-            formatedCate.push({ [firstWord]: [e] })
-            lastAlphabet = firstWord
-        } else if (lastAlphabet == firstWord) {
-            formatedCate.map((e1: Category) => {
-                Object.entries(e1).map(([k, v]: any) => {
-                    if (k == firstWord) {
-                        v.push(e)
-                    }
-                })
-            })
-        } else {
-            formatedCate.push({ [firstWord]: [e] })
-            lastAlphabet = firstWord
-        }
-    })
-
+    let { groupedCategories } = await getCate();
 
     return (
-        <div className="px-4">
-            <div className="text-xl py-4">Categories</div>
-            <div >
-                {
-                    formatedCate.map((e: any, i: number) => {
-                        return (
-                            <div key={i}>
-                                {
-                                    Object.entries(e).map(([e1, v1]: any, i1: number) => {
-                                        return (
-                                            <>
-                                                <div key={i1} className="my-5 text-xl text-blue underline">{e1}</div>
-                                                <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 " >
-                                                    {
-                                                        v1.map((val: Category, ival: number) => {
-                                                            return <Allcategories e={val} i={ival} />
-                                                        })
-                                                    }
-                                                </div>
-                                            </>
-                                        )
+        <main className="bg-white py-12">
+            <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+                <header className="mb-12 text-center">
+                    <h1 className="text-4xl font-black tracking-tighter text-surface-900 md:text-6xl">
+                        All Categories
+                    </h1>
+                    <p className="mt-4 text-lg text-surface-500">
+                        Browse our full collection of categories.
+                    </p>
+                </header>
 
-                                    })
-                                }
+                <div className="space-y-12">
+                    {Object.entries(groupedCategories).map(([letter, categories]) => (
+                        <section key={letter}>
+                            <h2 className="mb-8 text-3xl font-black tracking-tighter text-brand-500">
+                                {letter}
+                            </h2>
+                            <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                                {categories.map((e: Category, i: number) => (
+                                    <Allcategories key={e.docID || i} e={e} i={i} />
+                                ))}
                             </div>
-                        )
-                    })
-                }
+                        </section>
+                    ))}
+                </div>
             </div>
-        </div >
-
-    )
+        </main>
+    );
 }
 
-export default Category
-
+export default Category;
 export const revalidate = 100;

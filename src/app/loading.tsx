@@ -1,51 +1,52 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-export default function () {
+export default function Loading() {
     return (
-        <div className="pt-10 px-4" >
-            <div className="grid grid-cols-3 gap-[20px] md:gap-[80px]">
-                <div className="col-span-2">
-                    <div className="grid gap-4 grid-cols-2 md:grid-cols-3 mb-4" >
-                        {/* {cate.map((e: any, i: number) => <CategoryListing e={e} i={i} />)} */}
-                        <Skeleton className="h-[170px] ronunded-lg bg-[lightgray]" />
-                        <Skeleton className="h-[170px] ronunded-lg bg-[lightgray]" />
-                        <Skeleton className="h-[170px] ronunded-lg bg-[lightgray]" />
+        <main className="min-h-screen bg-white py-12">
+            <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+                {/* Categories Skeleton */}
+                <section className="mb-16">
+                    <div className="mb-8 h-10 w-64">
+                        <Skeleton height="100%" />
                     </div>
-                    <div>
-                        {/* {posts.map((e: any, i: number) => <HomePageCard e={e} i={i} />)} */}
-                        <Skeleton className="bg-[lightgray] ronunded-lg mb-5 h-[50px] w-[70%] rounded my-10 " />
-                        <Skeleton className="bg-[lightgray] ronunded-lg mb-5 h-[300px] w-[80%] m-[auto] rounded " />
-                        <Skeleton className="bg-[lightgray] ronunded-lg mb-5 h-[200px] rounded " />
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {[1, 2, 3].map((i) => (
+                            <Skeleton key={i} className="h-64 rounded-2xl" />
+                        ))}
                     </div>
-                </div>
-                <div className="col-span-1" >
-                    <div>
+                </section>
 
-                        <div className='w-2/3 mb-5' >
-                            <Skeleton className='h-[50px]' />
+                {/* Main Content Grid Skeleton */}
+                <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
+                    <div className="lg:col-span-2 space-y-12">
+                        <div className="h-10 w-64">
+                            <Skeleton height="100%" />
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2  gap-5 mb-5" >
-                            <Skeleton className="h-[120px] rounded-lg bg-[lightgray]" />
-                            <Skeleton className="h-[120px] rounded-lg bg-[lightgray]" />
-                            <Skeleton className="h-[120px] rounded-lg bg-[lightgray]" />
-                            <Skeleton className="h-[120px] rounded-lg bg-[lightgray]" />
-                        </div >
+                        {[1, 2].map((i) => (
+                            <div key={i} className="space-y-4">
+                                <Skeleton className="h-64 w-full rounded-2xl" />
+                                <Skeleton className="h-8 w-3/4" />
+                                <Skeleton count={3} className="h-4" />
+                            </div>
+                        ))}
                     </div>
-                    <div>
-
-                        <div className='w-2/3 mb-5' >
-                            <Skeleton className='h-[50px]' />
+                    <div className="hidden lg:block space-y-12">
+                        <Skeleton className="h-8 w-40" />
+                        <div className="space-y-6">
+                            {[1, 2, 3, 4].map((i) => (
+                                <div key={i} className="flex gap-4">
+                                    <Skeleton className="h-16 w-16 rounded-lg" />
+                                    <div className="flex-1 space-y-2">
+                                        <Skeleton className="h-4" />
+                                        <Skeleton className="h-4 w-20" />
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2  gap-5" >
-                            <Skeleton className="h-[200px] rounded-lg bg-[lightgray] mb-5" />
-                            <Skeleton className="h-[200px] rounded-lg bg-[lightgray] mb-5" />
-                            <Skeleton className="h-[200px] rounded-lg bg-[lightgray] mb-5" />
-                            <Skeleton className="h-[200px] rounded-lg bg-[lightgray] mb-5" />
-                        </div >
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     )
 }
