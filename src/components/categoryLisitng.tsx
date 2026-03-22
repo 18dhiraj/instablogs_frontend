@@ -16,7 +16,7 @@ const CategoryListing = (props: { e: Category, i: number }) => {
             <Image
                 src={e.image}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-500 "
                 alt={e.name}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface-900/90 via-surface-900/20 to-transparent"></div>
