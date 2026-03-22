@@ -29,21 +29,45 @@ export default async () => {
   let { posts , cate, lastVisible } = await getData();
 
   return (
-    <div className="pt-10 px-4" >
-      <div className="grid grid-cols-3 gap-[10px] md:gap-[20px]">
-        <div className="col-span-2">
-          <div className="grid gap-4 grid-cols-2 md:grid-cols-3 mb-4" >
-            {cate.map((e: Category , i: number) => <CategoryListing e={e} i={i} />)}
+    <main className="min-h-screen bg-white py-12">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        {/* Featured Categories Row */}
+        <section className="mb-16">
+          <div className="mb-8 flex items-end justify-between">
+            <div className="space-y-1">
+              <h2 className="text-3xl font-black tracking-tighter text-surface-900 md:text-4xl">
+                Explore Categories
+              </h2>
+              <p className="text-surface-500">Discover stories curated for your interests.</p>
+            </div>
           </div>
-          <div>
-            <PostsListing initialPosts={posts} lastVisibleId={lastVisible.id} />
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {cate.map((e: Category, i: number) => (
+              <CategoryListing key={e.docID || i} e={e} i={i} />
+            ))}
           </div>
-        </div>
-        <div className="col-span-1" >
-          <RightSection />
+        </section>
+
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-3">
+          {/* Posts Column */}
+          <div className="lg:col-span-2">
+            <div className="mb-8 space-y-1">
+              <h2 className="text-3xl font-black tracking-tighter text-surface-900 md:text-4xl">
+                Latest Stories
+              </h2>
+              <p className="text-surface-500">Fresh updates from around the world.</p>
+            </div>
+            <PostsListing initialPosts={posts} lastVisibleId={lastVisible?.id} />
+          </div>
+
+          {/* Sidebar Column */}
+          <div className="hidden lg:block h-full">
+            <RightSection />
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

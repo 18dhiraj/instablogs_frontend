@@ -4,19 +4,26 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const SideListCategoryItem = (props: { e: Category, i: number }) => {
-
-    let { e, i } = props
+    const { e, i } = props
     const router = useRouter()
+
     return (
-        <div key={i} className="cursor-pointer m-1 mb-0" onClick={() => router.push(`/category/${e.seo}`)} >
+        <div 
+            onClick={() => router.push(`/category/${e.seo}`)} 
+            className="group relative h-24 w-full cursor-pointer overflow-hidden rounded-xl bg-surface-200 shadow-soft transition-all hover:shadow-hover"
+        >
             <Image
                 src={e.image}
-                alt="category"
-                className="object-cover h-[70px] sm:h-[90px] md:h-[120px] w-[100%] rounded-lg hover:scale-105 hover:rounded-lg ease duration-200 "
-                width={200}
-                height={100}
+                alt={e.name}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div className="text-[10px] md:text-sm leading-[12px] md:leading-tight mt-2">{e.name}</div>
+            <div className="absolute inset-0 bg-gradient-to-t from-surface-900/80 via-surface-900/20 to-transparent"></div>
+            <div className="absolute inset-0 flex items-end p-3">
+                <span className="text-xs font-black uppercase tracking-widest text-white transition-colors group-hover:text-brand-300">
+                    {e.name}
+                </span>
+            </div>
         </div>
     )
 }
