@@ -16,7 +16,7 @@ const Allcategories = (props: { e: Category, i: number }) => {
                 src={e.image}
                 alt={e.name}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface-900/80 via-surface-900/30 to-transparent"></div>
             <div className="absolute inset-x-0 bottom-0 p-4">

@@ -65,13 +65,15 @@ const Details = async (props: { params: Promise<{ seo: string }> }) => {
                         </header>
 
                         <div className="relative mb-10 aspect-video overflow-hidden rounded-3xl shadow-soft">
-                            <Image
-                                src={details.image}
-                                alt={details.title}
-                                fill
-                                className="object-cover"
-                                priority
-                            />
+                            {details.image && (
+                                <Image
+                                    src={details.image}
+                                    alt={details.title}
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                            )}
                         </div>
 
                         <div 

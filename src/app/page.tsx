@@ -49,7 +49,7 @@ export default async () => {
         </section>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           {/* Posts Column */}
           <div className="lg:col-span-2">
             <div className="mb-8 space-y-1">
@@ -63,7 +63,7 @@ export default async () => {
 
           {/* Sidebar Column */}
           <div className="hidden lg:block h-full">
-            <RightSection />
+            <RightSection showCategories={false} />
           </div>
         </div>
       </div>

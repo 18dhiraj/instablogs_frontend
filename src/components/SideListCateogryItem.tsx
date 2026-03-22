@@ -10,13 +10,13 @@ const SideListCategoryItem = (props: { e: Category, i: number }) => {
     return (
         <div 
             onClick={() => router.push(`/category/${e.seo}`)} 
-            className="group relative h-24 w-full cursor-pointer overflow-hidden rounded-xl bg-surface-200 shadow-soft transition-all hover:shadow-hover"
+            className="group relative h-24 w-full cursor-pointer overflow-hidden rounded-xl bg-surface-200 shadow-soft transition-all hover:-translate-y-1 hover:shadow-hover"
         >
             <Image
                 src={e.image}
                 alt={e.name}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="object-cover transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface-900/80 via-surface-900/20 to-transparent"></div>
             <div className="absolute inset-0 flex items-end p-3">

@@ -18,12 +18,14 @@ const HomePageCard = (data: { e: Seo, i: number }) => {
                 className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-xl" 
                 onClick={navigate}
             >
-                <Image
-                    src={image}
-                    alt={title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                {image && (
+                    <Image
+                        src={image}
+                        alt={title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                )}
                 <div className="absolute left-4 top-4">
                     <span className="rounded-full bg-brand-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-sm">
                         {category}
